@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MYTableViewController.h
 //  MyHomePwner
 //
 //  Created by hc on 2017/3/6.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface MYTableViewController : UITableViewController
 
 @end
-

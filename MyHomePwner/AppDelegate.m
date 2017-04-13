@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import "MYTableViewController.h"
+#import "MYItemStore.h"
 @interface AppDelegate ()
 
 @end
@@ -16,7 +17,24 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    // Create a BNRItemsViewController
+    MYTableViewController *itemsViewController = [[MYTableViewController alloc] init];
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:itemsViewController];
+    
+    
+    // Place a BNRItemsViewController's table view in the window hierarchy
+    self.window.rootViewController = navController;
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+
+    
+    
     return YES;
 }
 
@@ -30,6 +48,14 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    BOOL success = [[MYItemStore sharedStore]saveChanges];
+    if (success) {
+        NSLog(@"save all of the items");
+    } else {
+        NSLog(@"fail to save any items");
+    }
+    
 }
 
 
